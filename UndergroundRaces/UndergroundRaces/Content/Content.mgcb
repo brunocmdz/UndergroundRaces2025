@@ -1,0 +1,87 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin clio-underground-races-2025-avanzando.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:clio-underground-races-2025-avanzando.png
+
+#begin clio-underground-races-2025-doblando.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:clio-underground-races-2025-doblando.png
+
+#begin faroles-underground-races-2025.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:faroles-underground-races-2025.png
+
+#begin manaos-cartel-underground-races-2025.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:manaos-cartel-underground-races-2025.png
+
+#begin pepsi-cartel-underground-races-2025.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:pepsi-cartel-underground-races-2025.png
+
+#begin ypf-cartel-undergorund-races-2025.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ypf-cartel-undergorund-races-2025.png
+

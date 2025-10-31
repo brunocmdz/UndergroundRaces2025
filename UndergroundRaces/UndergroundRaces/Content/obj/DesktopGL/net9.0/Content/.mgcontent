@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/clio-underground-races-2025-avanzando.png</File>
+    <File>C:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/clio-underground-races-2025-doblando.png</File>
+    <File>C:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/faroles-underground-races-2025.png</File>
+    <File>C:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/manaos-cartel-underground-races-2025.png</File>
+    <File>C:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/pepsi-cartel-underground-races-2025.png</File>
+    <File>C:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/ypf-cartel-undergorund-races-2025.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
