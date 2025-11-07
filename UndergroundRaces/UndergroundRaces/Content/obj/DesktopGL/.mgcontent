@@ -4,14 +4,34 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>c:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/clio-underground-races-2025-avanzando.png</File>
-    <File>c:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/clio-underground-races-2025-doblando.png</File>
-    <File>c:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/faroles-underground-races-2025.png</File>
-    <File>c:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/manaos-cartel-underground-races-2025.png</File>
-    <File>c:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/pepsi-cartel-underground-races-2025.png</File>
-    <File>c:/Users/Alumno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/ypf-cartel-undergorund-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/background.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/clio-underground-races-2025-avanzando.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/clio-underground-races-2025-doblando.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/corsa-underground-races-2025-avanzando.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/corsa-underground-races-2025-doblando.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/faroles-underground-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/garolio-underground-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/manaos-cartel-underground-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/mega-libu-huevo-cartel-underground-races-.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/oyudin-underground-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/pessi-cartel-underground-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/semaforos-underground-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/señalizaciones-underground-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/tilgo-underground-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/utr-cartel-undergorund-races-2025.png</File>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/Zahama Cartel Underground Races 2025.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
