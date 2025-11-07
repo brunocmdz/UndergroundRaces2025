@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace UndergroundRaces;
 
@@ -13,6 +14,12 @@ public class Game1 : Game
     private Texture2D _corsaAvanzando;
     private Texture2D _corsaDoblando;
     private Texture2D _corsaActual;
+
+    private SoundEffect _motorSound;
+    private SoundEffectInstance _motorInstance;
+    private float _motorVolume = 0f;
+    private const float _volumenMaximo = 1f;
+    private const float _velocidadCambioVolumen = 0.01f;
 
     private Vector2 _corsaPosition;
     private SpriteEffects _spriteEffect = SpriteEffects.None;
@@ -29,9 +36,7 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        // Posición inicial centrada horizontalmente y sobre la ruta
         int screenWidth = GraphicsDevice.Viewport.Width;
-        int screenHeight = GraphicsDevice.Viewport.Height;
         _corsaPosition = new Vector2(screenWidth / 2f, 700);
         base.Initialize();
     }
@@ -43,21 +48,26 @@ public class Game1 : Game
         _fondo = Content.Load<Texture2D>("images/background");
         _corsaAvanzando = Content.Load<Texture2D>("images/corsa-underground-races-2025-avanzando");
         _corsaDoblando = Content.Load<Texture2D>("images/corsa-underground-races-2025-doblando");
-
         _corsaActual = _corsaAvanzando;
+
+        _motorSound = Content.Load<SoundEffect>("audio/motor-corsa");
+        _motorInstance = _motorSound.CreateInstance();
+        _motorInstance.IsLooped = true;
+        _motorInstance.Volume = 0f;
+        _motorInstance.Play();
     }
 
     protected override void Update(GameTime gameTime)
     {
         var state = Keyboard.GetState();
-        float velocidad = 3.5f;
+        float velocidad = 5f;
 
         int screenWidth = GraphicsDevice.Viewport.Width;
-        float corsaAncho = _corsaActual.Width;
+        float corsaAncho = _corsaActual.Width * 3f; 
         float corsaMitad = corsaAncho / 2f;
 
-        float rutaMargenIzquierdo = 180f;
-        float rutaMargenDerecho = screenWidth - 180f;
+        float rutaMargenIzquierdo = 200f;
+        float rutaMargenDerecho = screenWidth - 200f;
 
         float limiteIzquierdo = rutaMargenIzquierdo - corsaMitad;
         float limiteDerecho = rutaMargenDerecho + corsaMitad;
@@ -66,7 +76,6 @@ public class Game1 : Game
         {
             _corsaActual = _corsaDoblando;
             _spriteEffect = SpriteEffects.None;
-
             if (_corsaPosition.X + velocidad < limiteDerecho)
                 _corsaPosition.X += velocidad;
         }
@@ -74,7 +83,6 @@ public class Game1 : Game
         {
             _corsaActual = _corsaDoblando;
             _spriteEffect = SpriteEffects.FlipHorizontally;
-
             if (_corsaPosition.X - velocidad > limiteIzquierdo)
                 _corsaPosition.X -= velocidad;
         }
@@ -83,6 +91,21 @@ public class Game1 : Game
             _corsaActual = _corsaAvanzando;
             _spriteEffect = SpriteEffects.None;
         }
+
+        if (state.IsKeyDown(Keys.W))
+        {
+            _motorVolume += _velocidadCambioVolumen;
+            if (_motorVolume > _volumenMaximo)
+                _motorVolume = _volumenMaximo;
+        }
+        else
+        {
+            _motorVolume -= _velocidadCambioVolumen;
+            if (_motorVolume < 0f)
+                _motorVolume = 0f;
+        }
+
+        _motorInstance.Volume = _motorVolume;
 
         if (state.IsKeyDown(Keys.Escape))
             Exit();
@@ -114,7 +137,7 @@ public class Game1 : Game
             Color.White,
             0f,
             origin,
-            3f,
+            3f, // escala x3
             _spriteEffect,
             0f
         );

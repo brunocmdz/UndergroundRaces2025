@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/audio/motor-corsa.wav</File>
     <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/background.png</File>
     <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/clio-underground-races-2025-avanzando.png</File>
     <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/clio-underground-races-2025-doblando.png</File>
@@ -22,6 +23,7 @@
     <File>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/Zahama Cartel Underground Races 2025.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
