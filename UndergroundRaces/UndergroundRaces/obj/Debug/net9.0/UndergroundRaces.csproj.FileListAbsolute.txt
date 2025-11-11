@@ -153,3 +153,4 @@ c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\ob
 c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\obj\Debug\net9.0\UndergroundRaces.pdb
 c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\obj\Debug\net9.0\UndergroundRaces.genruntimeconfig.cache
 c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\obj\Debug\net9.0\ref\UndergroundRaces.dll
+c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\bin\Debug\net9.0\Content\images\backgroundPLANTILLA2.xnb

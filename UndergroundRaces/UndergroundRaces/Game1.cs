@@ -15,9 +15,9 @@ namespace UndergroundRaces
         private Texture2D _fondoAtlas;
         private List<Rectangle> _framesFondo = new();
         private int _frameActual = 0;
-        private int _totalFrames = 14; // ✅ cantidad de frames reales (0–13)
+        private int _totalFrames = 14; // cantidad de frames reales (0–13)
         private float _timerFrame = 0f;
-        private float _tiempoPorFrame = 0.1f; // velocidad de cambio de frame
+        private float _tiempoPorFrame = 0.02f; // velocidad de cambio de frame
         private bool _avanzando = false;
 
         // Corsa
@@ -39,15 +39,15 @@ namespace UndergroundRaces
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            _graphics.PreferredBackBufferWidth = 1920;
-            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 576;
             _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
         {
             int screenWidth = GraphicsDevice.Viewport.Width;
-            _corsaPosition = new Vector2(screenWidth / 2f, 700);
+            _corsaPosition = new Vector2(screenWidth / 2f, 500);
             base.Initialize();
         }
 
@@ -56,7 +56,7 @@ namespace UndergroundRaces
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Fondo (atlas con varios frames)
-            _fondoAtlas = Content.Load<Texture2D>("images/backgroundPLANTILLA");
+            _fondoAtlas = Content.Load<Texture2D>("images/backgroundPLANTILLA2");
             GenerarFramesFondo(_fondoAtlas, 1024, 576);
 
             _corsaAvanzando = Content.Load<Texture2D>("images/corsa-underground-races-2025-avanzando");
@@ -83,7 +83,6 @@ namespace UndergroundRaces
                 }
             }
 
-            // ✅ Limitar a los frames válidos (evita el frame negro)
             if (_framesFondo.Count > _totalFrames)
                 _framesFondo = _framesFondo.GetRange(0, _totalFrames);
         }
@@ -162,7 +161,9 @@ namespace UndergroundRaces
         {
             GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(
+                samplerState: SamplerState.PointClamp
+            );
 
             int screenWidth = GraphicsDevice.Viewport.Width;
             int screenHeight = GraphicsDevice.Viewport.Height;
