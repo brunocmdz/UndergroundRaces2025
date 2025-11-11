@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UndergroundRaces")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fad4c849f02c0ea125b1f076a5e7487546df6e7e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b081b4094563a4da81484dee489141e952d3f35")]
 [assembly: System.Reflection.AssemblyProductAttribute("UndergroundRaces")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UndergroundRaces")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

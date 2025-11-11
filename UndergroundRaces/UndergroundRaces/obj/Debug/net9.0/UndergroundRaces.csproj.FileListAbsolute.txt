@@ -155,3 +155,4 @@ c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\ob
 c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\obj\Debug\net9.0\ref\UndergroundRaces.dll
 c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\bin\Debug\net9.0\Content\images\backgroundPLANTILLA2.xnb
 c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\bin\Debug\net9.0\Content\images\corsaPLANTILLA.xnb
+c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\bin\Debug\net9.0\Content\images\corsaDoblandoPLANTILLA.xnb

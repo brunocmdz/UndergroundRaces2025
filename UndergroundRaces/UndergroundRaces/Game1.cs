@@ -22,14 +22,20 @@ namespace UndergroundRaces
 
         // --- Corsa ---
         private Texture2D _corsaAtlas;                 // atlas con 2 frames (quieto/acelerando)
-        private List<Rectangle> _framesCorsa = new();  // frames del atlas
+        private List<Rectangle> _framesCorsa = new();  // frames del atlas principal
         private int _frameCorsaActual = 0;             // frame actual
         private float _timerCorsa = 0f;                // temporizador animación
         private float _tiempoPorFrameCorsa = 0.08f;    // velocidad de cambio
-        private Texture2D _corsaDoblando;              // textura del corsa doblando
         private bool _usandoAtlas = true;              // true = usa corsaPLANTILLA, false = doblando
         private Vector2 _corsaPosition;
         private SpriteEffects _spriteEffect = SpriteEffects.None;
+
+        // --- Corsa doblando (nuevo atlas animado) ---
+        private Texture2D _corsaDoblandoAtlas;          // atlas de doblar
+        private List<Rectangle> _framesDoblando = new();
+        private int _frameDoblandoActual = 0;
+        private float _timerDoblando = 0f;
+        private float _tiempoPorFrameDoblando = 0.1f;   // velocidad de animación al doblar
 
         // --- Sonido motor ---
         private SoundEffect _motorSound;
@@ -63,10 +69,13 @@ namespace UndergroundRaces
             _fondoAtlas = Content.Load<Texture2D>("images/backgroundPLANTILLA2");
             GenerarFramesFondo(_fondoAtlas, 1024, 576);
 
-            // Corsa
+            // Corsa principal
             _corsaAtlas = Content.Load<Texture2D>("images/corsaPLANTILLA"); // atlas con 2 frames
             GenerarFramesCorsa(_corsaAtlas, _corsaAtlas.Width, _corsaAtlas.Height / 2);
-            _corsaDoblando = Content.Load<Texture2D>("images/corsa-underground-races-2025-doblando");
+
+            // Corsa doblando
+            _corsaDoblandoAtlas = Content.Load<Texture2D>("images/corsaDoblandoPLANTILLA"); // nuevo atlas 2 frames
+            GenerarFramesDoblando(_corsaDoblandoAtlas, _corsaDoblandoAtlas.Width, _corsaDoblandoAtlas.Height / 2);
 
             // Sonido motor
             _motorSound = Content.Load<SoundEffect>("audio/motor-corsa");
@@ -103,6 +112,15 @@ namespace UndergroundRaces
             }
         }
 
+        private void GenerarFramesDoblando(Texture2D atlas, int anchoFrame, int altoFrame)
+        {
+            int filas = atlas.Height / altoFrame;
+            for (int y = 0; y < filas; y++)
+            {
+                _framesDoblando.Add(new Rectangle(0, y * altoFrame, anchoFrame, altoFrame));
+            }
+        }
+
         protected override void Update(GameTime gameTime)
         {
             var state = Keyboard.GetState();
@@ -117,13 +135,21 @@ namespace UndergroundRaces
             float limiteIzquierdo = rutaMargenIzquierdo - corsaMitad;
             float limiteDerecho = rutaMargenDerecho + corsaMitad;
 
-            // Movimiento lateral
+            // Movimiento lateral con animación
             if (state.IsKeyDown(Keys.D))
             {
                 _usandoAtlas = false;
                 _spriteEffect = SpriteEffects.None;
                 if (_corsaPosition.X + velocidad < limiteDerecho)
                     _corsaPosition.X += velocidad;
+
+                // animación de doblar
+                _timerDoblando += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (_timerDoblando >= _tiempoPorFrameDoblando)
+                {
+                    _timerDoblando = 0f;
+                    _frameDoblandoActual = (_frameDoblandoActual + 1) % _framesDoblando.Count;
+                }
             }
             else if (state.IsKeyDown(Keys.A))
             {
@@ -131,14 +157,23 @@ namespace UndergroundRaces
                 _spriteEffect = SpriteEffects.FlipHorizontally;
                 if (_corsaPosition.X - velocidad > limiteIzquierdo)
                     _corsaPosition.X -= velocidad;
+
+                // animación de doblar
+                _timerDoblando += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (_timerDoblando >= _tiempoPorFrameDoblando)
+                {
+                    _timerDoblando = 0f;
+                    _frameDoblandoActual = (_frameDoblandoActual + 1) % _framesDoblando.Count;
+                }
             }
             else
             {
                 _usandoAtlas = true;
                 _spriteEffect = SpriteEffects.None;
+                _frameDoblandoActual = 0;
             }
 
-            // Control de avance (solo avanza el fondo si se mantiene W)
+            // Avance con W
             _avanzando = state.IsKeyDown(Keys.W);
             if (_avanzando)
             {
@@ -152,7 +187,7 @@ namespace UndergroundRaces
                         _frameActual = 0;
                 }
 
-                // Corsa animado (alternando entre los dos frames)
+                // Corsa animado (2 frames)
                 _timerCorsa += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (_timerCorsa >= _tiempoPorFrameCorsa)
                 {
@@ -162,7 +197,7 @@ namespace UndergroundRaces
             }
             else
             {
-                _frameCorsaActual = 0; // quieto
+                _frameCorsaActual = 0;
             }
 
             // Sonido del motor
@@ -189,7 +224,6 @@ namespace UndergroundRaces
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             int screenWidth = GraphicsDevice.Viewport.Width;
@@ -197,16 +231,12 @@ namespace UndergroundRaces
 
             // Fondo animado
             Rectangle frameRect = _framesFondo[_frameActual];
-            _spriteBatch.Draw(
-                _fondoAtlas,
-                new Rectangle(0, 0, screenWidth, screenHeight),
-                frameRect,
-                Color.White
-            );
+            _spriteBatch.Draw(_fondoAtlas, new Rectangle(0, 0, screenWidth, screenHeight), frameRect, Color.White);
 
-            // Auto (usa atlas o doblando según estado)
+            // --- Dibujo del auto ---
             if (_usandoAtlas)
             {
+                // Animación normal (quieto / avanzando)
                 Rectangle corsaRect = _framesCorsa[_frameCorsaActual];
                 Vector2 origin = new Vector2(corsaRect.Width / 2f, corsaRect.Height / 2f);
                 _spriteBatch.Draw(
@@ -223,11 +253,13 @@ namespace UndergroundRaces
             }
             else
             {
-                Vector2 origin = new Vector2(_corsaDoblando.Width / 2f, _corsaDoblando.Height / 2f);
+                // Animación de doblar
+                Rectangle corsaRect = _framesDoblando[_frameDoblandoActual];
+                Vector2 origin = new Vector2(corsaRect.Width / 2f, corsaRect.Height / 2f);
                 _spriteBatch.Draw(
-                    _corsaDoblando,
+                    _corsaDoblandoAtlas,
                     _corsaPosition,
-                    null,
+                    corsaRect,
                     Color.White,
                     0f,
                     origin,
@@ -238,7 +270,6 @@ namespace UndergroundRaces
             }
 
             _spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }
