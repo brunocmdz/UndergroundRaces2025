@@ -16,15 +16,18 @@ namespace UndergroundRaces
         private ContentManager _content;
 
         private Rectangle _botonJugar;
+        private Rectangle _botonAjustes; 
         private Rectangle _botonSalir;
         private MouseState _mouse;
         public Action OnJugarClick;
+        public Action OnAjustesClick; 
 
         public void LoadContent(Game game)
         {
             _graphicsDevice = game.GraphicsDevice;
             _content = game.Content;
             _botonJugar = new Rectangle(412, 220, 200, 60);
+            _botonAjustes = new Rectangle(412, 360, 200, 60); 
             _botonSalir = new Rectangle(412, 490, 200, 60);
 
 
@@ -39,7 +42,10 @@ namespace UndergroundRaces
         {
             OnJugarClick?.Invoke(); 
         }
-
+        if (_botonAjustes.Contains(_mouse.Position) && _mouse.LeftButton == ButtonState.Pressed)
+        {
+            OnAjustesClick?.Invoke(); 
+        }
         if (_botonSalir.Contains(_mouse.Position) && _mouse.LeftButton == ButtonState.Pressed)
         {
             Environment.Exit(0); 
