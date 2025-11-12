@@ -39,6 +39,8 @@ namespace UndergroundRaces
         private float _motorVolume = 0f;
         private const float _volumenMaximo = 0.5f;
         private const float _velocidadCambioVolumen = 0.01f;
+        public Action OnPausaSolicitada;
+
 
         private GraphicsDevice _graphicsDevice;
         private ContentManager _content;
@@ -81,6 +83,10 @@ namespace UndergroundRaces
             float limiteIzquierdo = rutaMargenIzquierdo - corsaMitad;
             float limiteDerecho = rutaMargenDerecho + corsaMitad;
 
+            if (state.IsKeyDown(Keys.Escape))
+            {
+                OnPausaSolicitada?.Invoke();
+            }
             if (state.IsKeyDown(Keys.D))
             {
                 _usandoAtlas = false;

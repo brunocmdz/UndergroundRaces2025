@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>c:/Users/bruno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/mega-libu-huevo-cartel-underground-races-.png</SourceFile>
-  <SourceTime>2025-11-11T14:08:34.6230922-03:00</SourceTime>
-  <DestFile>c:/Users/bruno/Desktop/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/bin/DesktopGL/images/mega-libu-huevo-cartel-underground-races-.xnb</DestFile>
-  <DestTime>2025-11-11T23:40:24.4417235-03:00</DestTime>
+  <SourceFile>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/images/mega-libu-huevo-cartel-underground-races-.png</SourceFile>
+  <SourceTime>2025-11-12T19:32:57.505535-03:00</SourceTime>
+  <DestFile>c:/Users/Victor/Documents/UndergroundRaces2025/UndergroundRaces/UndergroundRaces/Content/bin/DesktopGL/images/mega-libu-huevo-cartel-underground-races-.xnb</DestFile>
+  <DestTime>2025-11-12T19:56:14.0034796-03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-10-20T11:25:32-03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

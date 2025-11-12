@@ -15,16 +15,19 @@ namespace UndergroundRaces
         private IEscena _escenaActual;
         private EscenaMenu _menu;
         private EscenaJuego _juego;
+        private EscenaMenuJuego _menuJuego;
+        private EscenaMenuAjustes _menuAjustes;
 
+        private Stack<IEscena> _historialEscenas = new Stack<IEscena>();
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
             _graphics.PreferredBackBufferWidth = 1024;
             _graphics.PreferredBackBufferHeight = 576;
-
             _graphics.ApplyChanges();
         }
 
@@ -32,26 +35,31 @@ namespace UndergroundRaces
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // Inicializar escena de menú
             _menu = new EscenaMenu();
-            _menu.OnJugarClick = CambiarAEscenaJuego; // callback para cambiar de escena
             _menu.LoadContent(this);
+            _menu.OnJugarClick = CambiarAEscenaJuego;
+            _menu.OnAjustesClick = CambiarAEscenaAjustes;
 
-            // Inicializar escena de juego
             _juego = new EscenaJuego();
             _juego.LoadContent(this);
+            _juego.OnPausaSolicitada = CambiarAMenuJuego;
 
-            // Escena inicial: el menú
+            _menuJuego = new EscenaMenuJuego();
+            _menuJuego.LoadContent(this);
+            _menuJuego.OnReanudarClick = CambiarAEscenaJuego;
+            _menuJuego.OnVolverMenuClick = CambiarAMenuPrincipal;
+            _menuJuego.OnAjustesClick = CambiarAEscenaAjustes;
+
+            _menuAjustes = new EscenaMenuAjustes();
+            _menuAjustes.LoadContent(this);
+            _menuAjustes.OnVolverClick = VolverDesdeAjustes;
+
             _escenaActual = _menu;
         }
 
         protected override void Update(GameTime gameTime)
         {
             _escenaActual.Update(gameTime);
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             base.Update(gameTime);
         }
 
@@ -61,10 +69,34 @@ namespace UndergroundRaces
             _escenaActual.Draw(_spriteBatch);
             base.Draw(gameTime);
         }
+
         private void CambiarAEscenaJuego()
         {
             _escenaActual = _juego;
         }
 
+        private void CambiarAMenuJuego()
+        {
+            _escenaActual = _menuJuego;
+        }
+
+        private void CambiarAMenuPrincipal()
+        {
+            _escenaActual = _menu;
+        }
+
+        private void CambiarAEscenaAjustes()
+        {
+            _historialEscenas.Push(_escenaActual); // guarda escena actual
+            _escenaActual = _menuAjustes;
+        }
+
+        private void VolverDesdeAjustes()
+        {
+            if (_historialEscenas.Count > 0)
+                _escenaActual = _historialEscenas.Pop(); // vuelve a escena anterior
+            else
+                _escenaActual = _menu; // fallback
+        }
     }
 }

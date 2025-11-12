@@ -164,3 +164,5 @@ c:\Users\Victor\Documents\UndergroundRaces2025\UndergroundRaces\UndergroundRaces
 c:\Users\Victor\Documents\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\bin\Debug\net9.0\Content\images\menu-principal-underground-races-2025.xnb
 c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\bin\Debug\net9.0\Content\images\menu-ajustes-underground-races-2025.xnb
 c:\Users\bruno\Desktop\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\bin\Debug\net9.0\Content\images\menu-principal-underground-races-2025.xnb
+c:\Users\Victor\Documents\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\bin\Debug\net9.0\Content\images\menu-principal-seleccionar.xnb
+c:\Users\Victor\Documents\UndergroundRaces2025\UndergroundRaces\UndergroundRaces\bin\Debug\net9.0\Content\images\menu-juego-underground-races-2025.xnb
