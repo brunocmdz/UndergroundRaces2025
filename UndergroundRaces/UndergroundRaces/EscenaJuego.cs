@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 using System;
-using UndergroundRaces;
 
 namespace UndergroundRaces
 {
@@ -39,7 +38,20 @@ namespace UndergroundRaces
         private float _motorVolume = 0f;
         private const float _volumenMaximo = 0.5f;
         private const float _velocidadCambioVolumen = 0.01f;
+
         public Action OnPausaSolicitada;
+
+        private List<Texture2D> _carteles = new();
+        private int _indiceCartelIzq = 0;
+        private int _indiceCartelDer = 0;
+        private Texture2D _cartelIzqActual;
+        private Texture2D _cartelDerActual;
+        private Vector2 _posCartelIzq;
+        private Vector2 _posCartelDer;
+        private float _velocidadCartel = 3.5f;
+        private float _tiempoCartel = 3f;
+        private float _timerCartelIzq = 0f;
+        private float _timerCartelDer = 0f;
 
 
         private GraphicsDevice _graphicsDevice;
@@ -65,6 +77,17 @@ namespace UndergroundRaces
             _motorInstance.Volume = 0f;
             _motorInstance.Play();
 
+            for (int i = 1; i <= 8; i++)
+            {
+                _carteles.Add(_content.Load<Texture2D>($"images/cartel{i}"));
+            }
+
+            _cartelIzqActual = _carteles[_indiceCartelIzq];
+            _cartelDerActual = _carteles[_indiceCartelDer];
+            _posCartelIzq = new Vector2(30, 180); 
+            _posCartelDer = new Vector2(880, 180);
+
+
             int screenWidth = _graphicsDevice.Viewport.Width;
             _corsaPosition = new Vector2(screenWidth / 2f, 500);
         }
@@ -84,9 +107,8 @@ namespace UndergroundRaces
             float limiteDerecho = rutaMargenDerecho + corsaMitad;
 
             if (state.IsKeyDown(Keys.Escape))
-            {
                 OnPausaSolicitada?.Invoke();
-            }
+
             if (state.IsKeyDown(Keys.D))
             {
                 _usandoAtlas = false;
@@ -138,6 +160,34 @@ namespace UndergroundRaces
                     _timerCorsa = 0f;
                     _frameCorsaActual = (_frameCorsaActual + 1) % _framesCorsa.Count;
                 }
+
+                Vector2 direccionIzq = new Vector2(-1.5f, 1f); 
+                Vector2 direccionDer = new Vector2(1.5f, 1f);  
+
+                direccionIzq.Normalize();
+                direccionDer.Normalize();
+
+                _posCartelIzq += direccionIzq * _velocidadCartel;
+                _posCartelDer += direccionDer * _velocidadCartel;
+
+                _timerCartelIzq += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                _timerCartelDer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (_timerCartelIzq >= _tiempoCartel)
+                {
+                    _indiceCartelIzq = (_indiceCartelIzq + 1) % _carteles.Count;
+                    _cartelIzqActual = _carteles[_indiceCartelIzq];
+                    _posCartelIzq = new Vector2(30, 200);
+                    _timerCartelIzq = 0f;
+                }
+
+                if (_timerCartelDer >= _tiempoCartel)
+                {
+                    _indiceCartelDer = (_indiceCartelDer + 1) % _carteles.Count;
+                    _cartelDerActual = _carteles[_indiceCartelDer];
+                    _posCartelDer = new Vector2(screenWidth - 130, 200);
+                    _timerCartelDer = 0f;
+                }
             }
             else
             {
@@ -182,8 +232,13 @@ namespace UndergroundRaces
                 spriteBatch.Draw(_corsaDoblandoAtlas, _corsaPosition, corsaRect, Color.White, 0f, origin, 3f, _spriteEffect, 0f);
             }
 
+            spriteBatch.Draw(_cartelIzqActual, _posCartelIzq, null, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_cartelDerActual, _posCartelDer, null, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+
+
             spriteBatch.End();
         }
+
 
         private void GenerarFramesFondo(Texture2D atlas, int anchoFrame, int altoFrame)
         {
