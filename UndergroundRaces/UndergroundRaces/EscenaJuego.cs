@@ -8,8 +8,10 @@ using System;
 
 namespace UndergroundRaces
 {
+    // Manejo de escena del juego: fondo, auto, sonido y carteles
     public class EscenaJuego : IEscena
     {
+        // Fondo animado
         private Texture2D _fondoAtlas;
         private List<Rectangle> _framesFondo = new();
         private int _frameActual = 0;
@@ -18,6 +20,7 @@ namespace UndergroundRaces
         private float _tiempoPorFrame = 0.02f;
         private bool _avanzando = false;
 
+        // Textura auto recto
         private Texture2D _corsaAtlas;
         private List<Rectangle> _framesCorsa = new();
         private int _frameCorsaActual = 0;
@@ -27,20 +30,25 @@ namespace UndergroundRaces
         private Vector2 _corsaPosition;
         private SpriteEffects _spriteEffect = SpriteEffects.None;
 
+        // Textura auto doblando
         private Texture2D _corsaDoblandoAtlas;
         private List<Rectangle> _framesDoblando = new();
         private int _frameDoblandoActual = 0;
         private float _timerDoblando = 0f;
         private float _tiempoPorFrameDoblando = 0.1f;
 
+
+        // Efectos de sonido del auto
         private SoundEffect _motorSound;
         private SoundEffectInstance _motorInstance;
         private float _motorVolume = 0f;
         private const float _volumenMaximo = 0.5f;
         private const float _velocidadCambioVolumen = 0.01f;
 
+        // Evento de pausa
         public Action OnPausaSolicitada;
 
+        // Texturas de carteles
         private List<Texture2D> _carteles = new();
         private int _indiceCartelIzq = 0;
         private int _indiceCartelDer = 0;
@@ -59,6 +67,8 @@ namespace UndergroundRaces
 
         public void LoadContent(Game game)
         {
+            // Carga de recursos y generacion de frames
+            // Configuracion inicial de auto, sonido y carteles
             _graphicsDevice = game.GraphicsDevice;
             _content = game.Content;
 
@@ -94,6 +104,7 @@ namespace UndergroundRaces
 
         public void Update(GameTime gameTime)
         {
+            // Entradas del jugador
             var state = Keyboard.GetState();
             float velocidad = 3.5f;
 
@@ -106,9 +117,11 @@ namespace UndergroundRaces
             float limiteIzquierdo = rutaMargenIzquierdo - corsaMitad;
             float limiteDerecho = rutaMargenDerecho + corsaMitad;
 
+            // Pausa del juego
             if (state.IsKeyDown(Keys.Escape))
                 OnPausaSolicitada?.Invoke();
 
+            // Doblar a la derecha
             if (state.IsKeyDown(Keys.D))
             {
                 _usandoAtlas = false;
@@ -123,6 +136,7 @@ namespace UndergroundRaces
                     _frameDoblandoActual = (_frameDoblandoActual + 1) % _framesDoblando.Count;
                 }
             }
+            // Doblar a la izquierda
             else if (state.IsKeyDown(Keys.A))
             {
                 _usandoAtlas = false;
@@ -137,13 +151,14 @@ namespace UndergroundRaces
                     _frameDoblandoActual = (_frameDoblandoActual + 1) % _framesDoblando.Count;
                 }
             }
+            // Vuelve a la animacion normal del auto cuando no se presiona A ni D
             else
             {
                 _usandoAtlas = true;
                 _spriteEffect = SpriteEffects.None;
                 _frameDoblandoActual = 0;
             }
-
+            // Algoritmo para que se mueva el fondo,carteles,sonido
             _avanzando = state.IsKeyDown(Keys.W);
             if (_avanzando)
             {
@@ -211,6 +226,7 @@ namespace UndergroundRaces
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            //Dibujar todos los elementos
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             int screenWidth = _graphicsDevice.Viewport.Width;
@@ -242,6 +258,7 @@ namespace UndergroundRaces
 
         private void GenerarFramesFondo(Texture2D atlas, int anchoFrame, int altoFrame)
         {
+            // Crea frames recortando el atlas de fondo
             int columnas = atlas.Width / anchoFrame;
             int filas = atlas.Height / altoFrame;
 
@@ -259,6 +276,7 @@ namespace UndergroundRaces
 
         private void GenerarFramesCorsa(Texture2D atlas, int anchoFrame, int altoFrame)
         {
+            // Crea frames recortando el atlas de el auto
             int filas = atlas.Height / altoFrame;
             for (int y = 0; y < filas; y++)
             {
@@ -268,6 +286,7 @@ namespace UndergroundRaces
 
         private void GenerarFramesDoblando(Texture2D atlas, int anchoFrame, int altoFrame)
         {
+            // Crea frames del auto doblando
             int filas = atlas.Height / altoFrame;
             for (int y = 0; y < filas; y++)
             {
